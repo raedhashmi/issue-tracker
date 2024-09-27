@@ -9,11 +9,11 @@ export default function Home() {
     <main>
         <div className='m-5'>
           <Text className='text-2xl'>Whats On Your Mind?<br/></Text>
-          <Button color="blue" onClick={() => {document.querySelector("input")?.toggleAttribute("hidden")}}>Create Issues</Button>
+          <Button color="blue" onClick={() => window.location.href = "/Issues"}>Create Issues</Button>
           <br/>
-          <Button color="red">View Issues</Button>
+          <Button color="red" onClick={() => window.location.href = "/Dashboard"}>View Issues</Button>
           <br/>
-          <Button color="red">Delete Issues</Button>
+          <Button color="red" onClick={() => window.location.href = "/Dashboard"}>Delete Issues</Button>
           <br/>
         </div>
     </main>

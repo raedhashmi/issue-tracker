@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { FaSquarespace } from "react-icons/fa";
 import { Toaster } from "react-hot-toast";
-import AccountDropdown from "./components/AccountDropdown";
 import "./globals.css";
 
 
@@ -28,7 +27,6 @@ export default function RootLayout({
             <Link href="/"><FaSquarespace className="ml-7 w-12 h-16"/></Link>
             <Link href="/Dashboard" className="m-5 ml-9 font-medium text-lg hover:transition-all hover:-translate-y-1">Dashboard</Link>
             <Link href="/Issues" className="m-5 font-medium text-lg hover:transition-all hover:-translate-y-1">Issues</Link>
-            <AccountDropdown />
           </nav>
           <Toaster position="top-right" />
           {children}
