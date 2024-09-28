@@ -6,6 +6,7 @@ import * as Switch from '@radix-ui/react-switch';
 import { toast, Toaster } from 'react-hot-toast';
 import { IoMdEyeOff } from "react-icons/io";
 import { IoIosEye } from "react-icons/io";
+import { Value } from '@radix-ui/themes/src/components/data-list.jsx';
 
 export default function Signup() {
   const [username, setUsername] = useState<string | null>(null);
@@ -13,7 +14,6 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [usernamedefaultvalue, setUsernamedefaultvalue] = useState<any>(null);
   const [passworddefautvalue, setPassworddefautvalue] = useState<any>(null);
-  const [notificationswitch, setNotificationswitch] = useState<HTMLInputElement | null>(null);
   const [notificationOnOff, setNotificationOnOff] = useState<boolean | undefined>(true); 
   const [darkmodeOnOff, setDarkModeOnOff] = useState<any>(true);
 
@@ -101,15 +101,15 @@ export default function Signup() {
         </Switch.Root>
         <br />
         <label htmlFor="soundswitch" className='text-2xl'>Sound</label>
-        <input className={localStorage.getItem("notificationOnOff") == "true" ? "bg-slate-700 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium mix-blend-soft-light cursor-not-allowed" : "bg-blue-700 hover:bg-blue-600 active:bg-blue-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium cursor-pointer"}
+        <input className={localStorage.getItem("notificationOnOff") == "false" ? "bg-slate-700 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium mix-blend-soft-light cursor-not-allowed" : "bg-blue-700 hover:bg-blue-600 active:bg-blue-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium cursor-pointer"}
           id='soundswitch'
           type="file"
           accept='audio/*'
           onChange={(e) => {
             if(e.target.files && localStorage.getItem("notificationOnOff") == "true") {
-              localStorage.setItem("notificationsound", e.target.files[0].name)
+              localStorage.setItem("notificationSound", e?.target.files[0].name)
             }
-          }} disabled={localStorage.getItem("notificationOnOff") == "true" ? true : false} />
+          }} disabled={localStorage.getItem("notificationOnOff") == "false" ? true : false} />
       </div>
 
       <div id='appearancepanel' hidden style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-0 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56`}>
@@ -132,6 +132,30 @@ export default function Signup() {
         </Switch.Root>
         <br />
         <button className='bg-blue-700 hover:bg-blue-600 active:bg-blue-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium' onClick={() => window.location.reload()}>Change Appearance</button>
+      </div>
+
+      <div id='dangerpanel' hidden style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-0 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56`}>
+        <button className='bg-red-700 hover:bg-red-600 active:bg-red-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium' onClick={() => {
+          document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden");
+        }}>Delete Account</button>
+        <br />
+        <Text className='text-lg ml-5 text-zinc-600'>* This action CANNOT be undone.</Text>
+        <br />
+      </div>
+      <div id='deleteaccountpopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
+        <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-96`}>
+          <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
+          <br />
+          <Text className='text-lg ml-5 text-zinc-600'>This action CANNOT be undone.</Text>
+          <br />
+          <button onClick={() => document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
+          <button onClick={() => {document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden");
+            localStorage.clear();
+            toast.loading("Deleting account...", {duration: 2000});
+            window.location.reload()
+            window.location.href = "http://localhost:3000/Dashboard";
+          }} className='bg-red-700 hover:bg-red-600 active:bg-red-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Yes, delete account</button>
+        </div>
       </div>
     </main>
   )
