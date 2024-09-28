@@ -13,6 +13,8 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [usernamedefaultvalue, setUsernamedefaultvalue] = useState<any>(null);
   const [passworddefautvalue, setPassworddefautvalue] = useState<any>(null);
+  const [notificationswitch, setNotificationswitch] = useState<HTMLInputElement | null>(null);
+  const [notificationOnOff, setNotificationOnOff] = useState<boolean | undefined>(true); 
 
   useEffect(() => {
     setUsernamedefaultvalue(localStorage.getItem("username"));
@@ -80,6 +82,16 @@ export default function Signup() {
           }
         }}>Update</Button>
         <br />
+      </div>
+
+      <div id='notificationpanel' hidden style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className='bg-[rgb(18,18,18)] z-10 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56'>
+        <label htmlFor="notificationswitch" className='text-2xl'>Notifications</label>
+        <Switch.Root id="notificationswitch" onCheckedChange={(e) => {
+          setNotificationOnOff(e.valueOf());
+          localStorage.setItem("notificationOnOff", e.valueOf().toString());
+        }} className="w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_0_0_2px] ml-4 shadow-black focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-blue-700 outline-none cursor-pointer">
+          <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
+        </Switch.Root>
       </div>
     </main>
   )
