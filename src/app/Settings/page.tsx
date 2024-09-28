@@ -92,6 +92,22 @@ export default function Signup() {
         }} className="w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_0_0_2px] ml-4 shadow-black focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-blue-700 outline-none cursor-pointer">
           <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
         </Switch.Root>
+
+        <br />
+
+        <label htmlFor="soundswitch" className='text-2xl'>Sound</label>
+        <input
+          className={notificationOnOff == false ? "bg-slate-700 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium mix-blend-soft-light cursor-not-allowed" : "bg-blue-700 hover:bg-blue-600 active:bg-blue-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium cursor-pointer"}
+          id='soundswitch'
+          type="file"
+          accept='audio/*'
+          onChange={(e) => {
+            if(e.target.files && notificationOnOff == false) {
+              localStorage.setItem("notificationsound", e.target.files[0].name)
+            }
+          }}
+          disabled={notificationOnOff == false}
+        />
       </div>
     </main>
   )
