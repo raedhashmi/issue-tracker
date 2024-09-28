@@ -52,6 +52,35 @@ export default function Signup() {
 
         </div>
       </div>
+
+      <div id='defaultpanel' style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className='bg-[rgb(18,18,18)] z-0 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56'>
+        <Text className='text-2xl font-medium'>Click On the Panels on the left side to change settings</Text>
+      </div>
+
+      <div id='accountpanel' hidden style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className='bg-[rgb(18,18,18)] z-10 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56'>
+        <input type="text" onChange={(e) => setUsername(e.target.value)} className='border-2 rounded-xl p-2 ml-2' placeholder="Username" defaultValue={usernamedefaultvalue} />
+        <br />
+        <div className='relative'>
+          <input type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} className='border-2 rounded-xl p-2 m-2' placeholder="Password" defaultValue={passworddefautvalue}/>
+          <button type='button' onClick={() => setShowPassword(!showPassword)} className='absolute left-52 top-1/2 -translate-y-1/2'>
+            {showPassword ? <IoIosEye className='mb-0'/> : <IoMdEyeOff className='mb-0' /> }
+          </button>
+        </div>
+        <br />
+        <Button type='submit' style={{width: "22%", borderRadius: "10px", marginLeft: "1%"}} color='blue' onClick={(e) => {
+          e.preventDefault();
+          if(username && password) {
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            toast.success("Updated Sucessfully!")
+            window.location.reload();
+          }
+          else {
+            toast.error("Something went wrong!")
+          }
+        }}>Update</Button>
+        <br />
+      </div>
     </main>
   )
 }
