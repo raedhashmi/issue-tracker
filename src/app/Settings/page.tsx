@@ -139,14 +139,45 @@ export default function Signup() {
           document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden");
         }}>Delete Account</button>
         <br />
-        <Text className='text-lg ml-5 text-zinc-600'>* This action CANNOT be undone.</Text>
+        <button className='bg-red-700 hover:bg-red-600 active:bg-red-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium' onClick={() => {
+          document.getElementById("deleteallissuespopup")?.toggleAttribute("hidden");
+        }}>Delete All Issues</button>
+        <br />
+        <button className='bg-yellow-700 hover:bg-yellow-600 active:bg-yellow-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium' onClick={() => {
+          localStorage.setItem("issues", "");
+          localStorage.setItem("description", "");
+          localStorage.setItem("notificationOnOff", "true");
+          localStorage.setItem("notificationSound", "");
+          localStorage.setItem("darkMode", "true");
+          window.location.reload();
+        }}>Reset All Settings to Default</button>
+        <br />
+        <Text className='text-lg ml-5 text-zinc-600'>* These action CANNOT be undone.</Text>
         <br />
       </div>
-      <div id='deleteaccountpopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
-        <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-96`}>
+        
+
+      <div id='deleteallissuespopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
+      <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-auto`}>
           <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
           <br />
-          <Text className='text-lg ml-5 text-zinc-600'>This action CANNOT be undone.</Text>
+          <Text className='text-lg ml-5 text-zinc-600'>Do you want to delete all issues?</Text>
+          <br />
+          <button onClick={() => document.getElementById("deleteallissuespopup")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
+          <button onClick={() => {
+            document.getElementById("deleteallissuespopup")?.toggleAttribute("hidden");
+            localStorage.removeItem("issues");
+            localStorage.removeItem("description");
+            window.location.reload();
+          }} className='bg-red-700 hover:bg-red-600 active:bg-red-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Delete All Issues</button>
+        </div>
+      </div>
+
+      <div id='deleteaccountpopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
+        <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-auto`}>
+          <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
+          <br />
+          <Text className='text-lg ml-5 text-zinc-600'>Are you sure you want to delete your account?</Text>
           <br />
           <button onClick={() => document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
           <button onClick={() => {document.getElementById("deleteaccountpopup")?.toggleAttribute("hidden");
