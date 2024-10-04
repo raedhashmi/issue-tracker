@@ -6,6 +6,7 @@ import * as Switch from '@radix-ui/react-switch';
 import { toast, Toaster } from 'react-hot-toast';
 import { IoMdEyeOff } from "react-icons/io";
 import { IoIosEye } from "react-icons/io";
+import { CgDarkMode } from 'react-icons/cg';
 import { Value } from '@radix-ui/themes/src/components/data-list.jsx';
 
 export default function Signup() {
@@ -94,8 +95,6 @@ export default function Signup() {
           onCheckedChange={(e) => {
             setNotificationOnOff(e.valueOf());
             localStorage.setItem("notificationOnOff", e.valueOf().toString());
-            if (e.valueOf() == true) toast.success(localStorage.getItem("notificationOnOff"));
-            else if (e.valueOf() == false) toast.error(localStorage.getItem("notificationOnOff"));
           }} defaultChecked={localStorage.getItem("notificationOnOff") == "true" ? true : false} className="w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_0_0_2px] ml-4 shadow-black focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-blue-700 outline-none cursor-pointer">
           <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
         </Switch.Root>
@@ -113,18 +112,12 @@ export default function Signup() {
       </div>
 
       <div id='appearancepanel' hidden style={{position: "absolute", top: "36%", left: "54.5%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-0 shadow-slate-600 shadow-[0px_0px_20px_3px] p-4 m-4 rounded-xl w-[80vw] h-56`}>
-      <label htmlFor="darkmodeswitch" className='text-2xl'>Dark Mode</label>
+      <label htmlFor="darkmodeswitch" className='text-2xl'><CgDarkMode />Dark Mode</label>
         <Switch.Root id='darkmodeswitch'
         onCheckedChange={
           (e) => {
             setDarkModeOnOff(e.valueOf());
             localStorage.setItem("darkMode", e.valueOf().toString());
-            if (e.valueOf() == true) {
-              toast.success(localStorage.getItem("darkMode"));
-            }
-            else if (e.valueOf() == false) {
-              toast.error(localStorage.getItem("darkMode"));
-            }
           }
         }
         defaultChecked={localStorage.getItem("darkMode") == "true" ? true : false} className="w-[42px] h-[25px] bg-blackA6 rounded-full relative shadow-[0_0_0_2px] ml-4 shadow-black focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-blue-700 outline-none cursor-pointer">
@@ -156,9 +149,8 @@ export default function Signup() {
         <br />
       </div>
         
-
       <div id='deleteallissuespopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
-      <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-auto`}>
+      <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 p-4 m-4 rounded-xl w-auto`}>
           <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
           <br />
           <Text className='text-lg ml-5 text-zinc-600'>Do you want to delete all issues?</Text>
@@ -174,7 +166,7 @@ export default function Signup() {
       </div>
 
       <div id='deleteaccountpopup' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
-        <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 shadow-[0px_0px_1400px_30px] p-4 m-4 rounded-xl w-auto`}>
+        <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`${darklight} z-50 shadow-slate-600 p-4 m-4 rounded-xl w-auto`}>
           <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
           <br />
           <Text className='text-lg ml-5 text-zinc-600'>Are you sure you want to delete your account?</Text>
@@ -191,4 +183,3 @@ export default function Signup() {
     </main>
   )
 }
-/*replace all bg- elements in every className with bg-[${localStorage.getItem("darkMode") == "true" ? "white" : "[rgb(18,18,18)]"}]"*/
