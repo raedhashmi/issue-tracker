@@ -45,6 +45,13 @@ export default function AccountDropdown() {
                         <button onClick={() => document.getElementById("deleteaccountsettingspopup")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
                         <button onClick={() => {document.getElementById("deleteaccountsettingspopup")?.toggleAttribute("hidden");
                             localStorage.clear();
+                            localStorage.setItem("username", "");
+                            localStorage.setItem("password", "");
+                            localStorage.setItem("darkMode", "true");
+                            localStorage.setItem("loggedIn", "false");
+                            for(let i = 0; i <= 5; i++) {
+                                localStorage.setItem( `issue${i}`, "");
+                            }
                             toast.loading("Deleting account...", {duration: 2000});
                             window.location.reload()
                             window.location.href = "http://localhost:3000/Dashboard";
@@ -72,6 +79,13 @@ export default function AccountDropdown() {
                     <button onClick={() => document.getElementById("deleteaccountsettingspopup")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
                     <button onClick={() => {document.getElementById("deleteaccountsettingspopup")?.toggleAttribute("hidden");
                         localStorage.clear();
+                        localStorage.setItem("username", "");
+                        localStorage.setItem("password", "");
+                        localStorage.setItem("darkMode", "true");
+                        localStorage.setItem("loggedIn", "false");
+                        for(let i = 0; i <= 5; i++) {
+                            localStorage.setItem( `issue${i}`, "");
+                        }
                         toast.loading("Deleting account...", {duration: 2000});
                         window.location.reload()
                         window.location.href = "http://localhost:3000/Dashboard";

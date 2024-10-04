@@ -56,7 +56,6 @@ export default function Signup() {
             document.getElementById("appearancepanel")?.setAttribute("hidden", "true");
             document.getElementById("dangerpanel")?.toggleAttribute("hidden");
           }}>Danger Zone</button>
-
         </div>
       </div>
 
