@@ -10,7 +10,6 @@ export default function Signup() {
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  console.log(localStorage.getItem("darkMode"))
   return (
     <main>
       <form style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`bg-[${localStorage.getItem("darkMode") == "true" ? "bg-white" : "bg-[rgb(18,18,18)]"}] shadow-slate-600 text-center items-center shadow-[0px_0px_20px_3px] rounded-xl mb-2 mt-2 p-4`}>

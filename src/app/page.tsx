@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Theme, ThemePanel , Text , Button } from '@radix-ui/themes';
 
 export default function Home() {
-  localStorage.setItem("loggedIn", "false");
   return (
     <main>
         <div className='m-5'>

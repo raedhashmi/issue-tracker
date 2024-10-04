@@ -16,8 +16,6 @@ export default function CreateIssues() {
   const description3 = localStorage.getItem("description3");
   const description4 = localStorage.getItem("description4");
   const description5 = localStorage.getItem("description5");
-
-  console.log(issue2);
   return (
     <main>
       <div className='m-5'>
@@ -31,7 +29,7 @@ export default function CreateIssues() {
             <h1 className='text-2xl font-medium'>{issue1}</h1>
             <h2 className='text-xl'>{description1}</h2>
             <Button color="red" onClick={() => {
-              localStorage.removeItem(`issue1`);
+              localStorage.setItem(`issue1`, "");
               localStorage.removeItem(`description1`);
               window.location.reload();
             }}>Delete Issue</Button>
@@ -41,7 +39,7 @@ export default function CreateIssues() {
             <h1 className='text-2xl font-medium'>{issue2}</h1>
             <h2 className='text-xl'>{description2}</h2>
             <Button color="red" onClick={() => {
-              localStorage.removeItem(`issue2`);
+              localStorage.setItem(`issue2`, "");
               localStorage.removeItem(`description2`);
               window.location.reload();
             }}>Delete Issue</Button>
@@ -51,7 +49,7 @@ export default function CreateIssues() {
             <h1 className='text-2xl font-medium'>{issue3}</h1>
             <h2 className='text-xl'>{description3}</h2>
             <Button color="red" onClick={() => {
-              localStorage.removeItem(`issue3`);
+              localStorage.setItem(`issue3`, "");
               localStorage.removeItem(`description3`);
               window.location.reload();
             }}>Delete Issue</Button>
@@ -61,7 +59,7 @@ export default function CreateIssues() {
             <h1 className='text-2xl font-medium'>{issue4}</h1>
             <h2 className='text-xl'>{description4}</h2>
             <Button color="red" onClick={() => {
-              localStorage.removeItem(`issue4`);
+              localStorage.setItem(`issue4`, "");
               localStorage.removeItem(`description4`);
               window.location.reload();
             }}>Delete Issue</Button>
@@ -71,7 +69,7 @@ export default function CreateIssues() {
             <h1 className='text-2xl font-medium'>{issue5}</h1>
             <h2 className='text-xl'>{description5}</h2>
             <Button color="red" onClick={() => {
-              localStorage.removeItem(`issue5`);
+              localStorage.setItem(`issue5`, "");
               localStorage.removeItem(`description5`);
               window.location.reload();
             }}>Delete Issue</Button>

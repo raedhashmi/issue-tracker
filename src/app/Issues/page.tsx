@@ -127,21 +127,50 @@ export default function CreateIssues() {
           <input className='border-2 rounded-xl p-2' style={{width: "31%", paddingBottom: "7%"}} hidden id="description4" placeholder='Description 4 *' type="text"/>
           <input className='border-2 rounded-xl p-2' style={{width: "31%", paddingBottom: "7%"}} hidden id="description5" placeholder='Description 5 *' type="text"/>
           <br />
-          <Button id='submit' color="blue" style={{width: "31%", marginTop: "10px"}} type="submit" className='m-5'>Submit</Button>
-          <Button color="red" style={{position: "absolute", right: "1%", top: "16%"}} onClick={
-            () => {
-              if(confirm("Are you sure you want to delete all issues?")){
-                for(let i = 1; i <= 5; i++){
-                  localStorage.removeItem(`issue${i}`);
-                  localStorage.removeItem(`description${i}`);
-                  toast.loading(`Deleteing issue ${i}...`,{duration: 3000});
-                }
-                window.location.reload();
-              }
-              else
-                alert("Cancelled")
-              }
-            }>Delete All</Button>
+          <Button id='submit' color="blue" style={{width: "31%", marginTop: "10px"}} type='submit' className='m-5'>Submit</Button>
+          <Button color="red" type='button' style={{position: "absolute", right: "1%", top: "16%"}} onClick={() => {
+            document.getElementById("deleteissues")?.toggleAttribute("hidden");
+          }}>Delete All</Button>
+
+          {localStorage.getItem("darkMode") == "true" ? (
+            <div id='deleteissues' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
+              <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`bg-[rgb(18,18,18)] text-white z-50 shadow-slate-600 p-4 m-4 rounded-xl w-auto`}>
+                <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
+                <br />
+                <Text className='text-lg ml-5 text-zinc-600'>Do you want to delete all issues?</Text>
+                <br />
+                <button type="button" onClick={() => document.getElementById("deleteissues")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
+                <button type="button" onClick={() => {
+                  document.getElementById("deleteissues")?.toggleAttribute("hidden");
+                  for(let i = 1; i <= 5; i++) {
+                    localStorage.setItem(`issue${i}`, "");
+                    localStorage.setItem(`description${i}`, "");
+                    toast.loading(`Deleting Issue ${i}...`,{duration: 2000});
+                  }
+                  window.location.reload();
+                }} className='bg-red-700 hover:bg-red-600 active:bg-red-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Delete All Issues</button>
+              </div>
+            </div>
+          ) : (
+            <div id='deleteissues' hidden className='z-50 w-screen h-screen' style={{position: "absolute", top: "0", left: "0", backgroundColor: "rgba(0, 0, 0, 0.6)"}}>
+              <div style={{position: "absolute",  top: "50%", left: "50%", transform: "translate(-50%, -50%)"}} className={`bg-white text-black z-50 shadow-slate-600 p-4 m-4 rounded-xl w-auto`}>
+                <Text className='text-2xl ml-4 font-bold'>Are you absolutley sure?</Text>
+                <br />
+                <Text className='text-lg ml-5 text-zinc-600'>Do you want to delete all issues?</Text>
+                <br />
+                <button type="button" onClick={() => document.getElementById("deleteissues")?.toggleAttribute("hidden")} className='bg-gray-700 hover:bg-gray-600 active:bg-gray-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Cancel</button>
+                <button type="button" onClick={() => {
+                  document.getElementById("deleteissues")?.toggleAttribute("hidden");
+                  for(let i = 1; i <= 5; i++) {
+                    localStorage.removeItem(`issue${i}`);
+                    localStorage.removeItem(`description${i}`);
+                    toast.loading(`Deleting Issue${i}...`,{duration: 2000});
+                  }
+                  window.location.reload();
+                }} className='bg-red-700 hover:bg-red-600 active:bg-red-500 text-white hover:transition-all rounded-xl m-1 ml-4 p-2 font-medium'>Delete All Issues</button>
+              </div>
+            </div>
+          )}
         </form>
      </div>
     </main>
